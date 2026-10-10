@@ -22,4 +22,5 @@ func _on_lifespan_timeout() -> void:
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if(area.is_in_group("Enemy")):
 		print("Hit enemy")
+		area.get_parent().HP -=3
 		self.queue_free()

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://rshnmvoxq2ex"]
 
 [ext_resource type="Texture2D" uid="uid://b3eyj2tx5t2k" path="res://icon.svg" id="1_naotq"]
+[ext_resource type="Script" uid="uid://cnf851pdg2q46" path="res://scripts/basic_enemy_logic.gd" id="1_rwafm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y75q1"]
 radius = 12.0
@@ -11,6 +12,7 @@ radius = 15.0
 [node name="Basic_Enemy" type="CharacterBody2D" unique_id=1603110339]
 collision_layer = 8
 collision_mask = 4
+script = ExtResource("1_rwafm")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=528293984]
 self_modulate = Color(1, 0, 0, 1)
@@ -27,3 +29,14 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=868096197]
 shape = SubResource("CircleShape2D_av4sa")
 debug_color = Color(0.7507864, 0.21121016, 0.9895255, 0.41960785)
+
+[node name="Navigation" type="NavigationAgent2D" parent="." unique_id=1538005776]
+unique_name_in_owner = true
+
+[node name="EnemySight" type="Area2D" parent="." unique_id=1777186833]
+
+[node name="Raycast" type="RayCast2D" parent="." unique_id=703245467]
+unique_name_in_owner = true
+target_position = Vector2(250, 0)
+
+[connection signal="body_entered" from="EnemySight" to="." method="_on_enemy_sight_body_entered"]

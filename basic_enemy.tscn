@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://rshnmvoxq2ex"]
+
+[ext_resource type="Texture2D" uid="uid://b3eyj2tx5t2k" path="res://icon.svg" id="1_naotq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y75q1"]
+radius = 12.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_av4sa"]
+radius = 15.0
+
+[node name="Basic_Enemy" type="CharacterBody2D" unique_id=1603110339]
+collision_layer = 8
+collision_mask = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=528293984]
+self_modulate = Color(1, 0, 0, 1)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_naotq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1704087902]
+shape = SubResource("CircleShape2D_y75q1")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=579929170 groups=["Enemy"]]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=868096197]
+shape = SubResource("CircleShape2D_av4sa")
+debug_color = Color(0.7507864, 0.21121016, 0.9895255, 0.41960785)

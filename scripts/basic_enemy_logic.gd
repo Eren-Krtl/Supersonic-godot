@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
-var CurrentState = EnemyGlobals.EnemyState.Idle
+@export var CurrentState:String = "Idle"
 
-@onready var Raycast = %Raycast
+@onready var Raycast := %Raycast
 
 var DesiredVelocity:Vector2
 var MoveVelocity:Vector2
@@ -17,8 +17,11 @@ func _physics_process(delta: float) -> void:
 	if(HP <= 0):
 		AnimationGlobals.animated_free(self)
 		return
-	EnemyGlobals.raycast_logic(Raycast, CurrentState)
-	MoveVelocity = EnemyGlobals.chase_velocity(self, NavAgent, 100)
+	EnemyGlobals.raycast_logic(self, Raycast)
+	if(CurrentState == "Chasing"):
+		MoveVelocity = EnemyGlobals.chase_velocity(self, NavAgent, 100)
+	else:
+		MoveVelocity = Vector2.ZERO
 	velocity_logic()
 	return
 

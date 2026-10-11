@@ -1,11 +1,6 @@
 extends Node
 
-enum EnemyState {
-	Idle,
-	Chasing,
-}
-
-func raycast_logic(Raycast:RayCast2D, CurrentState):
+func raycast_logic(Self_n:Node2D, Raycast:RayCast2D):
 	var Player:Node2D
 	for i in get_tree().current_scene.get_children():
 		if(i.is_in_group("Player")):
@@ -18,8 +13,7 @@ func raycast_logic(Raycast:RayCast2D, CurrentState):
 		return
 	if(Raycast.get_collider().is_in_group("Wall")):
 		return
-	CurrentState = EnemyState.Chasing
-#	print("Chasing player")
+	Self_n.CurrentState = "Chasing"
 	return
 
 func chase_velocity(Self_n:Node2D,NavAgent:NavigationAgent2D, speed) -> Vector2:

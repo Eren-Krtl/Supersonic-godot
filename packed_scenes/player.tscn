@@ -3,14 +3,14 @@
 [ext_resource type="Script" uid="uid://v6cps6kf11xj" path="res://scripts/player_logic.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://b3eyj2tx5t2k" path="res://icon.svg" id="2_i3pqv"]
 [ext_resource type="Script" uid="uid://cou4tcbfaawao" path="res://scripts/weapon_logic.gd" id="3_hqtel"]
-[ext_resource type="Texture2D" uid="uid://7ixi4i24m0gu" path="res://Gun.png" id="3_i3pqv"]
-[ext_resource type="PackedScene" uid="uid://h1rh04pmtw41" path="res://normal_bullet.tscn" id="4_sweqy"]
+[ext_resource type="PackedScene" uid="uid://h1rh04pmtw41" path="res://packed_scenes/player_bullets/normal_bullet.tscn" id="4_sweqy"]
+[ext_resource type="Texture2D" uid="uid://7ixi4i24m0gu" path="res://sprites/Gun.png" id="5_lnn8h"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jehdt"]
 radius = 25.0
 
 [node name="Player" type="CharacterBody2D" unique_id=621909382 groups=["Player"]]
-collision_mask = 12
+collision_mask = 4
 script = ExtResource("1_onrkg")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=41972662]
@@ -22,7 +22,7 @@ script = ExtResource("3_hqtel")
 NormalBulletPac = ExtResource("4_sweqy")
 
 [node name="Sprite2D" type="Sprite2D" parent="Weapon" unique_id=357375406]
-texture = ExtResource("3_i3pqv")
+texture = ExtResource("5_lnn8h")
 centered = false
 offset = Vector2(23, -6)
 

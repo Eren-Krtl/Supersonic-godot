@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 EnemyGlobals="*uid://cpha01snmwcqo"
+AnimationGlobals="*uid://gibmdft6hvcn"
 
 [display]
 
@@ -29,6 +30,7 @@ window/stretch/aspect="expand"
 Wall=""
 Enemy=""
 Player=""
+DeathAnimation=""
 
 [input]
 

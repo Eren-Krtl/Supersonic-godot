@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://h1rh04pmtw41"]
 
-[ext_resource type="Texture2D" uid="uid://bnccink1j26uv" path="res://BasicBullet.png" id="1_0iaw3"]
-[ext_resource type="Script" uid="uid://0k44cms78ad" path="res://scripts/normal_bullet_logic.gd" id="1_av4sa"]
+[ext_resource type="Script" uid="uid://0k44cms78ad" path="res://scripts/normal_bullet_logic.gd" id="1_xsawa"]
+[ext_resource type="Texture2D" uid="uid://bnccink1j26uv" path="res://sprites/BasicBullet.png" id="2_eb4cp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y75q1"]
 radius = 1.5
@@ -9,13 +9,17 @@ radius = 1.5
 [sub_resource type="CircleShape2D" id="CircleShape2D_no8no"]
 radius = 3.0
 
+[sub_resource type="Curve" id="Curve_y75q1"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.5308057, 0.8314607), -0.5334268, -0.5334268, 0, 0, Vector2(0.985782, 0.10112369), 0.0, 0.0, 0, 0]
+point_count = 3
+
 [node name="NormalBullet" type="CharacterBody2D" unique_id=135697966]
 collision_layer = 2
 collision_mask = 4
-script = ExtResource("1_av4sa")
+script = ExtResource("1_xsawa")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1829025560]
-texture = ExtResource("1_0iaw3")
+texture = ExtResource("2_eb4cp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2147156660]
 shape = SubResource("CircleShape2D_y75q1")
@@ -32,5 +36,23 @@ debug_color = Color(0.81730235, 0.0019075179, 0.97321314, 0.41960785)
 wait_time = 2.0
 autostart = true
 
+[node name="DeathAnimation" type="CPUParticles2D" parent="." unique_id=821997841 groups=["DeathAnimation"]]
+unique_name_in_owner = true
+emitting = false
+amount = 5
+lifetime = 0.2
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 60.0
+initial_velocity_max = 70.0
+angle_min = -90.0
+angle_max = 90.0
+scale_amount_min = 3.0
+scale_amount_max = 5.0
+scale_amount_curve = SubResource("Curve_y75q1")
+
+[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="timeout" from="Lifespan" to="." method="_on_lifespan_timeout"]

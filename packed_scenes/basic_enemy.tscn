@@ -9,6 +9,21 @@ radius = 12.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_av4sa"]
 radius = 15.0
 
+[sub_resource type="Gradient" id="Gradient_t4l7a"]
+offsets = PackedFloat32Array(0.7195767, 0.994709, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.962963, 0.962963, 0.962963, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bir7u"]
+gradient = SubResource("Gradient_t4l7a")
+width = 3
+height = 3
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Curve" id="Curve_yt6ia"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.9952607, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [node name="Basic_Enemy" type="CharacterBody2D" unique_id=1603110339]
 collision_layer = 8
 collision_mask = 4
@@ -38,5 +53,21 @@ unique_name_in_owner = true
 [node name="Raycast" type="RayCast2D" parent="." unique_id=703245467]
 unique_name_in_owner = true
 target_position = Vector2(250, 0)
+collision_mask = 5
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=145251803 groups=["DeathAnimation"]]
+emitting = false
+amount = 25
+texture = SubResource("GradientTexture2D_bir7u")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 35.0
+initial_velocity_max = 70.0
+scale_amount_min = 2.0
+scale_amount_max = 3.0
+scale_amount_curve = SubResource("Curve_yt6ia")
 
 [connection signal="body_entered" from="EnemySight" to="." method="_on_enemy_sight_body_entered"]

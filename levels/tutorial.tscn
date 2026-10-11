@@ -1,8 +1,8 @@
 [gd_scene format=4 uid="uid://qfa32wjkqfv7"]
 
-[ext_resource type="PackedScene" uid="uid://dqgennh2272qc" path="res://player.tscn" id="1_khcq3"]
+[ext_resource type="PackedScene" uid="uid://dqgennh2272qc" path="res://packed_scenes/player.tscn" id="1_khcq3"]
 [ext_resource type="Texture2D" uid="uid://b3eyj2tx5t2k" path="res://icon.svg" id="2_jehdt"]
-[ext_resource type="PackedScene" uid="uid://rshnmvoxq2ex" path="res://basic_enemy.tscn" id="3_ok11k"]
+[ext_resource type="PackedScene" uid="uid://rshnmvoxq2ex" path="res://packed_scenes/basic_enemy.tscn" id="3_ok11k"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jehdt"]
 texture = ExtResource("2_jehdt")
@@ -140,6 +140,11 @@ physics_layer_0/collision_layer = 4
 physics_layer_0/collision_mask = 0
 sources/0 = SubResource("TileSetAtlasSource_jehdt")
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_y75q1"]
+vertices = PackedVector2Array(241.00781, 254.04688, -302, 256.9375, -302, -271.04688, 241.97656, -273.9375)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-312, -281, 252, -284, 251, 264, -312, 267)])
+
 [node name="Tutorial" type="StaticBody2D" unique_id=1246463980]
 
 [node name="Player" parent="." unique_id=621909382 instance=ExtResource("1_khcq3")]
@@ -152,3 +157,6 @@ tile_set = SubResource("TileSet_no8no")
 
 [node name="Basic_Enemy" parent="." unique_id=1603110339 instance=ExtResource("3_ok11k")]
 position = Vector2(-102, -205)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=855135796]
+navigation_polygon = SubResource("NavigationPolygon_y75q1")
